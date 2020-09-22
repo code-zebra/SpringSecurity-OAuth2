@@ -1,10 +1,7 @@
 package com.bgtech.oauthserver.service;
 
-import com.bgtech.oauthserver.domain.SysPermission;
-import com.bgtech.oauthserver.domain.SysRole;
-import com.bgtech.oauthserver.domain.SysUser;
+import com.bgtech.oauthserver.domain.dto.MallUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,17 +27,36 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser sysUser = userService.getUserByName(username);
-        if (null == sysUser) {
+
+        MallUserDto user = userService.getUserByName(username);
+        if (null == user) {
             throw new UsernameNotFoundException(username);
         }
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (SysRole role : sysUser.getRoleList()) {
-            for (SysPermission permission : role.getPermissionList()) {
-                authorities.add(new SimpleGrantedAuthority(permission.getCode()));
-            }
-        }
+//        return new MallUserDto()
+        return null;
 
-        return new User(sysUser.getUsername(), sysUser.getPassword(), authorities);
+//        SysUser sysUser = userService.getUserByName(username);
+//        if (null == sysUser) {
+//            throw new UsernameNotFoundException(username);
+//        }
+//        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+//        for (SysRole role : sysUser.getRoleList()) {
+//            for (SysPermission permission : role.getPermissionList()) {
+//                authorities.add(new SimpleGrantedAuthority(permission.getCode()));
+//            }
+//        }
+
+/*        UserDTO user = userService.getUser(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("用户不存在");
+        }
+        // 添加用户拥有的多个角色
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        Set<Role> roles = user.getRoles();
+        for (Role role : roles) {
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRole()));
+        }*/
+
+//        return new User(user.getUsername(), user.getPassword(), authorities);
     }
 }

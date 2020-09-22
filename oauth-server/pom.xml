@@ -45,6 +45,12 @@
             <artifactId>jedis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

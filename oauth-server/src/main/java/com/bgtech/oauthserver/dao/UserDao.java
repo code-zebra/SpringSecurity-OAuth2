@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Arrays;
 
 @Slf4j
-@Repository
+//@Repository
 public class UserDao {
 
     private SysRole admin = new SysRole("ADMIN", "管理员");
@@ -35,7 +35,6 @@ public class UserDao {
     public SysUser selectByName(String username) {
         log.info("从数据库中查询用户");
         if ("zhangsan".equals(username)) {
-//            SysUser sysUser = new SysUser("zhangsan", "$2a$10$aZDOWYEvK06TrxN6g0Mta.X3gtnj1sHPReRic5YRcOiXl4yMctwS6");
             SysUser sysUser = new SysUser("zhangsan", "$2a$10$3nVkoLTDPUVLBHybUgsUtenrxDboDHgWtqQzKeLZjhjL1dE5sqmxy");
             sysUser.setRoleList(Arrays.asList(admin, developer));
             return sysUser;
@@ -46,5 +45,4 @@ public class UserDao {
         }
         return null;
     }
-
 }

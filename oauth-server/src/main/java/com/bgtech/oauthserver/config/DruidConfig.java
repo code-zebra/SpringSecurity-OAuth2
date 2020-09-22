@@ -11,7 +11,7 @@ import javax.sql.DataSource;
  * @author HuangJiefeng
  * @date 2020/9/17 0017 9:04
  */
-@Configuration
+//@Configuration
 public class DruidConfig {
     /**
      * 将自定义的 Druid 数据源添加到容器中，不再让 Spring Boot 自动创建

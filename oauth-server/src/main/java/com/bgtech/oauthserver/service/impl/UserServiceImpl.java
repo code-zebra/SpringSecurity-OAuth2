@@ -1,10 +1,9 @@
 package com.bgtech.oauthserver.service.impl;
 
-import com.bgtech.oauthserver.dao.UserDao;
-import com.bgtech.oauthserver.domain.SysUser;
+import com.bgtech.oauthserver.dao.UserMapper;
+import com.bgtech.oauthserver.domain.dto.MallUserDto;
 import com.bgtech.oauthserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @author HuangJiefeng
@@ -12,14 +11,14 @@ import org.springframework.stereotype.Service;
  *
  * 权限分配
  */
-@Service
+//@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserMapper userMapper;
 
     @Override
-    public SysUser getUserByName(String username) {
-        return userDao.selectByName(username);
+    public MallUserDto getUserByName(String username) {
+        return userMapper.selectUserByUserName(username);
     }
 }
